@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Travel App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" href="fav.png"></head>
+    <body>
+    <!--
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Travel App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pricing</a>
+                </li>
+              </ul>
+              <span class="navbar-text">
+                Navbar text with an inline element
+              </span>
+            </div>
+          </nav>
+    -->
+        <header>
+            <!-- <img id="header-logo" src="../res/logo.png" alt="logo"> -->
+            <img class="logo" src="img/43a520c2b94641ed0cee1c66cb6212d3.png" alt="logo">            
+            <!-- <h1 id="travel-header">Travel App</h1> -->
+            <nav>
+                <ul class="nav_links">
+                    <li><a href="#"> Home </a></li>
+                    <li><a href="#"> About </a></li>
+                    <li><a href="#"> Report </a></li>            
+                </ul>
+            </nav>
+            <button class="ripple" id="btn_contact">Contact</button>
+        </header>
+        
+        <div class="submit_form">
+            <h2 id="body_info">Plan your trip now !!</h2>
+              <div class="input_fields">
+                <input type="text" name="" placeholder="Enter Place Name" id="place-name" required>
+                <input type="date" id="start-date" required>
+                <input class="ripple" type="submit" id="btn-sub">
+              </div>
+        </div>
+        
+        <div class="container invisible" >
+            <div class="picture_container">
+                <img src="img/ec2a0e52fcadb2afd1f074e0709b6f44.png" id="location-picture" alt="">
+            </div>
+            
+            <div class="location_container">
+                <div id="place-name"><span id="place-entered"></span>, <span id="country-name"></span></div>
+                <div id="counter"> <span id="difference"></span> Days to go for the trip</div>
+                <div class="trip_control">
+                    <button class="ripple" id="save-trip">Save Trip</button>
+                    <button class="ripple" id="del-trip">Delete Trip</button>
+                </div>
+                <div class="temp_card">
+                    <div id="temp">
+                      <span></span>
+                    </div>
+                    <div class="weather-icon">
+                        <img src="img/6e7cb649ce52700f89d194b2c36b370c.png" alt="">
+                        <p id="weather-info"></p> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather_container" id="weather1">
+              <span id="degree1"></span>
+              <img id="weather1pic" src="img/6e7cb649ce52700f89d194b2c36b370c.png" alt="">
+              <p id="weather1"></p>
+            </div>
+            <div class="weather_container" id="weather2">
+              <span id="degree2"></span>
+              <img id="weather1pic" src="img/6e7cb649ce52700f89d194b2c36b370c.png" alt="">
+              <p id="weather2"></p>          
+            </div>
+            <div class="weather_container" id="weather3">
+              <span id="degree3"></span>
+              <img id="weather1pic" src="img/6e7cb649ce52700f89d194b2c36b370c.png" alt="">
+              <p id="weather3"></p>
+            </div>
+            <div class="weather_container" id="weather4">
+              <span id="degree4"></span>
+              <img id="weather1pic" src="img/6e7cb649ce52700f89d194b2c36b370c.png" alt="">
+              <p id="weather4"></p>
+            </div>
+            <div class="weather_container" id="weather5">
+              <span id="degree5"></span>
+              <img id="weather1pic" src="img/6e7cb649ce52700f89d194b2c36b370c.png" alt="">
+              <p id="weather5"></p>
+            </div>
+            <div class="weather_container" id="weather6">
+              <span id="degree6"></span>
+              <img id="weather1pic" src="img/6e7cb649ce52700f89d194b2c36b370c.png" alt="">
+              <span id="weather6"></span>
+            </div>
+        </div>
+    <script src="main.bundle.js"></script></body>
+</html>
