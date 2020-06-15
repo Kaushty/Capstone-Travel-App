@@ -34,6 +34,7 @@ module.exports = merge(common, {
     plugins:[
         new CleanWebpackPlugin(),    
         new HtmlWebpackPlugin({
+            favicon: './src/client/res/fav.png',
             template: './src/client/views/index.html',
             filename: 'index.html'
         }),    

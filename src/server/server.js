@@ -42,6 +42,11 @@ const getCountryPicture = async (country, ) => {
     }
 }
 
+const printData = function(str){
+    console.log(str)
+    return 200;
+}
+
 const getGeoData = async (place) => {
     // Function to fetch Geo-Co-ordinates
     console.log(':: Making Call to GeoName API::')
@@ -174,8 +179,6 @@ app.get('/travel', (req, res) => {
     res.send(programData[0]);
 })
 
-export{
-    getGeoData,
-    getWeatherData,
-    getPictureData
+module.exports = {
+    printData   
 }
