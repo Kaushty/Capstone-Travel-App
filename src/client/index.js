@@ -8,7 +8,9 @@ import './styles/formatdata_style.scss'
 
 
 document.getElementById('btn-sub').addEventListener('click', function(){
-    console.log('Button Clicked');
-    fetchData();
-})
+    const place_name = document.getElementById('place-name').value;
+    const date = document.getElementById('start-date').value;
 
+    console.log('Button Clicked');
+    fetchData(place_name, date);
+})

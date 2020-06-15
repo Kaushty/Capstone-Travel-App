@@ -5,44 +5,39 @@ Function to fetch information from API's
 3. Fetch Image
 */
 
-const fetchData = async function(){
+const fetchData = async function(place_name, date){
     console.log(":: Fetching Geo Location ::");
   
-    const place_name = document.getElementById('place-name').value;
     // Validate the input
+    if (checkInput(place_name, date)){
+        // Hide the error message if visible
+        document.getElementById('invalid-message').className = "invisible"
 
-   /* fetchLocationName(geoNames_URL)
-     .then((res) => {
-        if(res){
-            const country_name = res.countryName;
-            const weatherData = fetchWeatherData(res, weather_key)
-            .then(()=>{   
-                const pictureURL = fetchPicture(place_name, pixabay_key)
-            })
-            .then((pictureURL) => {
-                // Update the UI
-                updateUI(country_name, weatherData, pictureURL);
-            })
+        await fetchLocationName(place_name);
+        const finData = await getData('/travel');
+        if (finData.statusCode == 200){
+            console.log("Data received successfully");
         }
-        else{
-            console.log("Aborting Operation ")
-        }
-     });*/
-
-    await fetchLocationName(place_name);
-    const finData = await getData('/travel');
-    if (finData.statusCode == 200){
-        console.log("Data received successfully");
+        console.log(finData);
+        updateUI(finData, place_name);
     }
-    console.log(finData);
-    updateUI(finData, place_name);
-
+    else{
+        updateError();
+    }
 };
+
+const checkInput = function(place_name, date) {
+    if (place_name != "" && date != ""){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 const fetchLocationName = async function(place_name){
     // Function to send a post request to the server and fetch the Details for the travel
     console.log(':: Firing Fetch query ::');
-    // const response = await fetch(geoNames_URL);
     console.log(place_name)
     const response = await fetch('/fetchData', {
         method: 'POST',
@@ -81,6 +76,7 @@ const getData = async (route) => {
 }
 
 const updateUI = function(data, place_name){
+
     document.getElementById('location-picture').setAttribute('src', data.pictureData.pictureURL);
     document.querySelector('#country-name').textContent = data.geoData.countryName;
     document.querySelector('#place-entered').textContent = place_name.toUpperCase();
@@ -100,12 +96,19 @@ const updateUI = function(data, place_name){
     }
     document.getElementById('temp').innerHTML = `<span> ${weathers[0].temp}°C </span>`;
     document.getElementById('weather-info').innerHTML = weathers[0].weather.description;
+
     for(let i = 1; i <= weathers.length; i++){
-        document.getElementById('degree' + i).innerHTML = `<span> ${weathers[0].temp}°C </span>`;
-        document.getElementById('weather' + i).innerHTML += weathers[i-1].weather.description;
+        document.getElementById('date' + i).textContent = weathers[i-1].datetime;
+        document.getElementById('degree' + i).innerHTML = `<span> ${weathers[i-1].temp}°C </span>`;
+        // document.getElementById('weather1').innerHTML = weathers[1].weather.description;
     }
     document.querySelector('.container').classList.remove('invisible');
     console.log(weathers);
+}
+
+const updateError = function(){
+    // Update UI to show error
+    document.getElementById('invalid-message').className = ""
 }
 
 // Helper Functions
@@ -149,4 +152,6 @@ function calcLeapYears(month, years){
 
 export{
     fetchData,
+    calcDateDiff,
+    checkInput
 }
