@@ -6,9 +6,7 @@
     </head>
     <body>
         <header>
-            <!-- <img id="header-logo" src="../res/logo.png" alt="logo"> -->
             <img class="logo" src="../res/travel_logo.png" alt="logo">            
-            <!-- <h1 id="travel-header">Travel App</h1> -->
             <nav>
                 <ul class="nav_links">
                     <li><a href="#"> Home </a></li>
@@ -23,12 +21,15 @@
             <h2 id="body_info">Plan your trip now !!</h2>
               <div class="input_fields">
                 <input type="text" name="" placeholder="Enter Place Name" id="place-name" required>
-                <input type="date" id="start-date" min="2020-06-14" required>
+                <input type="date" id="start-date" min="2020-06-16" required>
                 <input class="ripple" type="submit" id="btn-sub">
               </div>
         </div>
         <div class="invisible" id="invalid-message">
           <h3>Please Enter Valid Inputs</h3>
+        </div>
+        <div class="invisible" id="fetch-failed">
+          <h3>Something went wrong, please try again.</h3>
         </div>
         <div class="container invisible" >
             <div class="picture_container">
@@ -36,7 +37,7 @@
             </div>
             
             <div class="location_container">
-                <div id="place-name"><span id="place-entered"></span>, <span id="country-name"></span></div>
+                <div id="place-info"><span id="place-entered"></span>, <span id="country-name"></span></div>
                 <div id="counter"> <span id="difference"></span> Days to go for the trip</div>
                 <div class="trip_control">
                     <button class="ripple" id="save-trip">Save Trip</button>
@@ -47,58 +48,55 @@
                       <span></span>
                     </div>
                     <div class="weather-icon">
-                        <!-- <img src="../res/favicon.png" alt=""> -->
                         <p id="weather-info"></p> 
                     </div>
                 </div>
             </div>
 
-            <div class="weather_container" id="weather1">
-              <p id="date1"></p>
-              <span id="degree1"></span>
-              <!-- <img id="weather1pic" src="../res/favicon.png" alt=""> -->
-              <span id="weather1"></span>
+            <div class="weather_forcast 1" id="forcast-set1">
+              <div class="weather_container" id="weather1">
+                <p id="date1"></p>
+                <span id="degree1"></span>
+                <span id="weather1"></span>
+              </div>
+              <div class="weather_container" id="weather2">
+                <p id="date2"> </p>
+                <span id="degree2"></span>
+                <span id="weather2"></span>          
+              </div>
+              <div class="weather_container" id="weather3">
+                <p id="date3"></p>
+                <span id="degree3"></span>
+                <span id="weather3"></span>
+              </div>
             </div>
-            <div class="weather_container" id="weather2">
-              <p id="date2"> </p>
-              <span id="degree2"></span>
-              <!-- <img id="weather1pic" src="../res/favicon.png" alt=""> -->
-              <span id="weather2"></span>          
-            </div>
-            <div class="weather_container" id="weather3">
-              <p id="date3"></p>
-              <span id="degree3"></span>
-              <!-- <img id="weather1pic" src="../res/favicon.png" alt=""> -->
-              <span id="weather3"></span>
-            </div>
-            <div class="weather_container" id="weather4">
-              <p id="date4"></p>
-              <span id="degree4"></span>
-              <!-- <img id="weather1pic" src="../res/favicon.png" alt=""> -->
-              <p id="weather4"></p>
-            </div>
-            <div class="weather_container" id="weather5">
-              <p id="date5"></p>
-              <span id="degree5"></span>
-              <!-- <img id="weather1pic" src="../res/favicon.png" alt=""> -->
-              <p id="weather5"></p>
-            </div>
-            <div class="weather_container" id="weather6">
-              <p id="date6"> </p>
-              <span id="degree6"></span>
-              <!-- <img id="weather1pic" src="../res/favicon.png" alt=""> -->
-              <span id="weather6"></span>
-            </div>
+           <div class="weather_forcast" id="forcast-set2">
+              <div class="weather_container" id="weather4">
+                <p id="date4"></p>
+                <span id="degree4"></span>
+                <p id="weather4"></p>
+              </div>
+              <div class="weather_container" id="weather5">
+                <p id="date5"></p>
+                <span id="degree5"></span>
+                <p id="weather5"></p>
+              </div>
+              <div class="weather_container" id="weather6">
+                <p id="date6"> </p>
+                <span id="degree6"></span>
+                <span id="weather6"></span>
+              </div>
+          </div> 
         </div>
 
         <script>
           // Check that service workers are supported
-          // if ('serviceWorker' in navigator) {
-          //     // Use the window load event to keep the page load performant
-          //     window.addEventListener('load', () => {
-          //         navigator.serviceWorker.register('/service-worker.js');
-          //     });
-          // }
+          if ('serviceWorker' in navigator) {
+              // Use the window load event to keep the page load performant
+              window.addEventListener('load', () => {
+                  navigator.serviceWorker.register('/service-worker.js');
+              });
+          }
       </script>
 
     </body>
