@@ -29,7 +29,7 @@ let weatherData = [];
 let pictureData = {};
 
 // Helper Function
-const getCountryPicture = async (country, ) => {
+/*const getCountryPicture = async (country, ) => {
     const picture_url = `https://pixabay.com/api/?key=${pixabay_key}&q=${country}&image_type=photo&pretty=true`;
     const response = await fetch(picture_url)
     try{
@@ -40,18 +40,13 @@ const getCountryPicture = async (country, ) => {
     }catch(error){
         console.log(`Error Out: Could not fetch Country Picture ${error}`);
     }
-}
+}*/
 
-const printData = function(str){
-    console.log(str)
-    return true;
-}
 
 const getGeoData = async (place) => {
     // Function to fetch Geo-Co-ordinates
     console.log(':: Making Call to GeoName API::')
     const geoNames_URL = `http://api.geonames.org/searchJSON?name=${place}&maxRows=1&username=${process.env.GEO_API_KEY}`;
-    // console.log(geoNames_URL);
     try{
         const response = await fetch(geoNames_URL);
         const location_response = await response.json();
@@ -60,7 +55,6 @@ const getGeoData = async (place) => {
         const latitude = location_response.geonames[0].lat;
         const longitude = location_response.geonames[0].lng;
         const country_name = location_response.geonames[0].countryName;
-        const population = location_response.geonames[0].population;
 
         return {
             statusCode: 200,
