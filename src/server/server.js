@@ -44,7 +44,7 @@ const getCountryPicture = async (country, ) => {
 
 const printData = function(str){
     console.log(str)
-    return 200;
+    return true;
 }
 
 const getGeoData = async (place) => {
@@ -179,6 +179,4 @@ app.get('/travel', (req, res) => {
     res.send(programData[0]);
 })
 
-module.exports = {
-    printData   
-}
+module.exports = app;

@@ -11,7 +11,6 @@ describe('Input Validation', () => {
 describe('Day Calculation Function', () => {
     it('passing dates', () => {
         const date = '2020-06-20';
-        const diff = 5;
-        expect(calcDateDiff(date)).toEqual(diff)
+        expect(calcDateDiff(date)).toEqual(4)
     })
 })
