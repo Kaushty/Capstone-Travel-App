@@ -5,24 +5,24 @@ Function to fetch information from API's
 3. Fetch Image
 */
 
-const fetchData = async function(place_name, date){
+const fetchData = async (place_name, date) => {
     console.log(":: Fetching Geo Location ::");
   
     // Validate the input
     if (checkInput(place_name, date)){
         // Hide the error message if visible
         document.getElementById('invalid-message').className = "invisible"
+        document.getElementById('fetch-failed').className = "invisible"
 
         await fetchLocationName(place_name);
         const finData = await getData('/travel');
         if (finData.statusCode == 200){
             console.log("Data received successfully");
         }
-        console.log(finData);
         updateUI(finData, place_name);
     }
     else{
-        updateError();
+        updateError(1001);
     }
 };
 
@@ -38,7 +38,6 @@ const checkInput = function(place_name, date) {
 const fetchLocationName = async function(place_name){
     // Function to send a post request to the server and fetch the Details for the travel
     console.log(':: Firing Fetch query ::');
-    console.log(place_name)
     const response = await fetch('/fetchData', {
         method: 'POST',
         mode: 'cors',
@@ -71,7 +70,8 @@ const getData = async (route) => {
         return final_data;
     }
     catch(err){
-        console.log(err);
+        updateError(4001)
+        return err;
     }
 }
 
@@ -103,12 +103,16 @@ const updateUI = function(data, place_name){
         // document.getElementById('weather1').innerHTML = weathers[1].weather.description;
     }
     document.querySelector('.container').classList.remove('invisible');
-    console.log(weathers);
 }
 
-const updateError = function(){
-    // Update UI to show error
-    document.getElementById('invalid-message').className = ""
+const updateError = function(code){
+    if(code == 1001){
+        // Update UI to show error
+        document.getElementById('invalid-message').className = ""
+    }
+    else if(code == 4001){
+        document.getElementById('fetch-failed').className = ""
+    }
 }
 
 // Helper Functions
@@ -118,13 +122,11 @@ const calcDateDiff = function(start_date){
     const d1 = today.getDate();
     const m1 = today.getMonth()+1;
     const y1 = today.getFullYear();
-    console.log(`Today's date is ${d1}-${m1}-${y1}`);
 
     const dot = start_date.split('-');
     const d2 = dot[2];
     const m2 = dot[1];
     const y2 = dot[0];
-    console.log(`Date of travel ${d2}-${m2}-${y2}`);
 
     const num_days1 = Number(y1 * 365) + Number(d1) + Number(calDaysinMonth(m1)) + Number(calcLeapYears(m1, y1));
     const num_days2 = Number(y2 * 365) + Number(d2) + Number(calDaysinMonth(m2)) + Number(calcLeapYears(m2, y2));
